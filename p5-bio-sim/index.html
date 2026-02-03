@@ -1,0 +1,30 @@
+<!-- preview by entering 'python -m http.server' (no quotes) as a terminal command -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Biology Simulation</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script src=" https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.min.js"></script>
+  </head>
+  <body>
+    <button onclick="speedUp()" style="height: 50px; width: 50px">Speed Up</button>
+    <button onclick="slowDown()" style="height: 50px; width: 50px">Slow Down</button>
+    <button onclick="displayGenes()" style="height: 50px; width: 50px">Display Average Genes</button>
+    <button onclick="enableDisaster()" style="height: 50px; width: 50px">Enable Disaster</button>
+    <button onclick="summonTiger()" style="height: 50px; width: 50px">Tiger Birth</button>
+    <script src="Genome.js"></script>
+    <script src="Gene.js"></script>
+    <script src="Organism.js"></script>
+    <script src="Bird.js"></script>
+    <script src="Pinkerton.js"></script>
+    <script src="Tiger.js"></script>
+    <script src="script.js"></script>
+
+
+<div id="birdContainer" style="height: 370px; width:100%;"></div>
+<div id="tigerContainer" style="height: 370px; width:100%;"></div>
+
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</body>
+</html>

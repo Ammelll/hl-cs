@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="framework.js" defer></script>
+  <script src="script.js" defer></script>
+
+</head>
+
+<body>
+  <p>
+    Your mission is to draw a flag of the United States by writing code in <code>script.js</code>. This environment provides two
+    methods: <code>drawFilledRect(x, y, w, h, color)</code> which draws a filled
+    rectangle with its top left at x,y and width w and height h, and 
+    <code>drawStar(x, y, d, color)</code> that draws a single filled star centered at x,y with diameter d. It also provides
+    five variables, <code>width</code> and <code>height</code> variables specifying the
+    size of the drawing area and <code>RED</code>, <code>WHITE</code>, and <code>BLUE</code> which
+    provide the color values for the official shades of red, white, and blue for
+    the flag.
+  </p>
+
+  <p>
+    Your flag must follow the proportions set out in the US code as summarized in
+    this <a target="_blank" href="https://itp.gigamonkeys.com/playgrounds/flag/spec/">US Flag specification</a>. In addition to being properly
+    proportioned, your flag should be 90% of the size of the largest
+    properly-proportioned flag that could fit in the drawing area and should be
+    centered horizontally and vertically.
+  </p>
+
+  <div>
+    <canvas id="screen">
+
+  </div>
+</body>
+
+</html>
