@@ -103,12 +103,32 @@ function testAll() {
   let arr = [-.1,4,7,6,1651,234,5,-18,9,2,3];
   selectionSort(arr);
   bubbleSort(arr);
+  let a = []
+  for(let i = 0; i < 100; i++){
+    a.push(i)
+  }
+ recursiveBinarySearch(a,0,a.length-1,NUM);
 }
 
 
 
 //HL Only: recursive binarySearch
-function recursiveBinarySearch(){
+function recursiveBinarySearch(arr,low,high,target){
+    let mid = arr[low+Math.floor((high-low)/2)];
+    if(arr.length <= 1){
+        return -1
+    }
+    if(target > mid){
+        low+= Math.floor((high-low)/2)
+        recursiveBinarySearch(arr,low,high,target)
+    } else if(target < mid){
+        high-= Math.floor((high-low)/2)
+        recursiveBinarySearch(arr,low,high,target)
+    }
+    if(target == mid){
+        document.getElementById("output_recursive_binary").innerHTML = "The number is " + mid
+        return mid;
+    }
 
 }
 
