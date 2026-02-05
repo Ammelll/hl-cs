@@ -103,6 +103,7 @@ function testAll() {
   let arr = [-.1,4,7,6,1651,234,5,-18,9,2,3];
   selectionSort(arr);
   bubbleSort(arr);
+  recursiveMergeSort(arr)
   let a = []
   for(let i = 0; i < 100; i++){
     a.push(i)
@@ -133,8 +134,31 @@ function recursiveBinarySearch(arr,low,high,target){
 }
 
 //HL Only: recursive mergeSort()
-function recursiveMergeSort(){
-
+function recursiveMergeSort(arr){
+    if(arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length/2) 
+    let left = arr.slice(0,mid)
+    let right = arr.slice(mid)
+    recursiveMergeSort(left)
+    recursiveMergeSort(right)
+    let sorted = merge(left,right)
+    document.getElementById("output_merge").innerHTML = "<br>after Recursive Merge Sort: " + sorted
+    return sorted
+}
+function merge(left, right){
+    let res = []
+    while(left.length != 0 && right.length != 0){
+        if(left[0] <= right[0]){
+            res.push(left[0])
+            left.shift()
+        } else{
+            res.push(right[0])
+            right.shift()
+        }
+    }
+    res.push(...left)
+    res.push(...right)
+    return res
 }
 
 /*  
