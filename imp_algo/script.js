@@ -160,7 +160,8 @@ function merge(left, right){
     res.push(...right)
     return res
 }
-
+function quickSort(arr,low,high){
+}
 /*  
 
 //swap pseudo code
