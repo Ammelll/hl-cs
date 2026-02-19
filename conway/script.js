@@ -24,13 +24,12 @@ function draw() {
     // Reproduction: Any dead cell with exactly 3 live neighbors becomes a live cell.
     // 
   let buffer = make2DArray(cols,rows);
-
   for(let i = 0; i < grid.length; i++){
     for(let j = 0; j < grid[0].length; j++){
         let count = countNeighbors(grid,i,j);
         if(grid[i][j]){
           buffer[i][j] = 1
-          if(count < 2 || grid > 3){
+          if(count < 2 || count > 3){
             buffer[i][j] = 0;
           }
         } else{
@@ -39,15 +38,15 @@ function draw() {
         }
       }
 
-
         fill(255,255,255)
         if(buffer[i][j]){
-            fill(0,255,0)
+            fill(0,30*count,0)
         }
         rect(i*resolution,j*resolution,resolution,resolution)
-
     }
   }
+  grid = [...buffer];
+
 
 }
 
@@ -91,8 +90,8 @@ const inRange = (k, l) =>  k >= 0 && k < cols && l >= 0 && l < rows
 
 function countNeighbors(grid, x, y) {
     let liveNeighbors = 0
-    for (let k = x-1; k < x+1; k++)
-        for (let l = y-1; l < y+1; l++)
+    for (let k = x-1; k <= x+1; k++)
+        for (let l = y-1; l <= y+1; l++)
             liveNeighbors += (k != x || l != y) && inRange(k, l) && grid[k][l];
     return liveNeighbors;
 }
