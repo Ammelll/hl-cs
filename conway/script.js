@@ -1,6 +1,7 @@
 let grid;
 let cols;
 let rows;
+let paused = false;
 let resolution = 15; // Size of each cell
 
 function setup() {
@@ -23,29 +24,22 @@ function draw() {
     // Overpopulation: Any live cell with more than 3 live neighbors dies.
     // Reproduction: Any dead cell with exactly 3 live neighbors becomes a live cell.
     // 
-  let buffer = make2DArray(cols,rows);
+  let buffer = grid.map(e => [...e])
   for(let i = 0; i < grid.length; i++){
     for(let j = 0; j < grid[0].length; j++){
-        let count = countNeighbors(grid,i,j);
-        if(grid[i][j]){
-          buffer[i][j] = 1
-          if(count < 2 || count > 3){
-            buffer[i][j] = 0;
-          }
-        } else{
-          if(count == 3){
-            buffer[i][j] = 1;
-        }
+      let count = countNeighbors(grid,i,j);
+      if(!paused){
+        buffer[i][j] = count == 3 || (grid[i][j] && count == 2)
       }
-
-        fill(255,255,255)
-        if(buffer[i][j]){
-            fill(0,30*count,0)
-        }
-        rect(i*resolution,j*resolution,resolution,resolution)
+      
+      fill(255,255,255)
+      if(buffer[i][j]){
+          fill(0,50*count,0)
+      }
+      rect(i*resolution,j*resolution,resolution,resolution)
     }
   }
-  grid = [...buffer];
+  grid = buffer; 
 
 
 }
@@ -54,19 +48,30 @@ function draw() {
 
 // 1. Click or Drag to Draw
 function mousePressed() {
-  toggleCell();
+  toggleCell(mouseX,mouseY,false);
 }
 
 function mouseDragged() {
-  toggleCell();
+  toggleCell(mouseX,mouseY,true);
 }
 
-function toggleCell() {
+function toggleCell(x,y,dragged) {
+  let i = Math.floor(y/resolution);
+  let j = Math.floor(x/resolution) 
+  grid[j][i] = !grid[j][i] || dragged
 }
 
 // 2. Keyboard Controls
 function keyPressed() {
-
+  if(key === ' '){
+    paused = !paused;
+  }
+  if(key === 'c'){
+    grid = make2DArray(cols,rows);
+  }
+  if(key === 'r'){
+    randomizeGrid();
+  }
 }
 
 // --- HELPER FUNCTIONS ---
