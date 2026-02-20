@@ -2,8 +2,9 @@ print = console.log
 let cards = []
 class Card{
     constructor(name){
-        this.name = name;
-        this.image = `https://plantsvszombies.wiki.gg/wiki/${name}#/media/File:${name}H.png`
+        this.name = name.replaceAll(" ", "_");
+        //https://plantsvszombies.wiki.gg/images/Puff-ShroomH.png
+        this.image = `https://plantsvszombies.wiki.gg/images/${this.name}H.png`
     }
 }
 async function bar(){
@@ -24,6 +25,7 @@ async function bar(){
     await bar();
     for(let card of cards){
         console.log(card.name);
-        document.getElementById('list').innerHTML += `<td>${card.name} <img src="${card.image}"></img></td><br>`;
+        document.getElementById('list').innerHTML += `<td>${card.name} <img width="100" height="100" src="${card.image}"></img></td><br>`;
     }
 })();
+//<td class="pi-horizontal-group-item pi-data-value pi-font pi-border-color pi-item-spacing" data-source="cost">3</td> tossed puppy
